@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FitnessActivityApp.Views.SettingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Settings">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    Text="User Setup"
+                    FontSize="28"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="These values will be used for estimated steps and calories."
+                    FontSize="15"
+                    TextColor="Gray" />
+            </VerticalStackLayout>
+
+            <Border
+                StrokeThickness="1"
+                Stroke="#DDDDDD"
+                Padding="18"
+                StrokeShape="RoundRectangle 18">
+
+                <VerticalStackLayout Spacing="16">
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Name or nickname" FontAttributes="Bold" />
+                        <Entry Text="{Binding FullNameText}" Placeholder="Example: Jhon Doe" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Weight (kg)" FontAttributes="Bold" />
+                        <Entry Text="{Binding WeightKgText}" Keyboard="Numeric" Placeholder="Example: 70" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Height (cm)" FontAttributes="Bold" />
+                        <Entry Text="{Binding HeightCmText}" Keyboard="Numeric" Placeholder="Example: 175" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Gender" FontAttributes="Bold" />
+                        <Picker
+                            ItemsSource="{Binding GenderOptions}"
+                            SelectedItem="{Binding SelectedGender}" />
+                    </VerticalStackLayout>
+
+                    <Button
+                        Text="Estimate step lengths"
+                        Command="{Binding EstimateStepLengthsCommand}" 
+                        BackgroundColor="ForestGreen"/>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Walking step length (m)" FontAttributes="Bold" />
+                        <Entry Text="{Binding WalkingStepLengthText}" Keyboard="Numeric" Placeholder="Example: 0.75" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="6">
+                        <Label Text="Running step length (m)" FontAttributes="Bold" />
+                        <Entry Text="{Binding RunningStepLengthText}" Keyboard="Numeric" Placeholder="Example: 1.10" />
+                    </VerticalStackLayout>
+
+                </VerticalStackLayout>
+
+            </Border>
+
+            <Button
+                Text="Save"
+                Clicked="OnSaveClicked"
+                HeightRequest="52" 
+                BackgroundColor="ForestGreen"/>
+
+            <Label
+                Text="{Binding StatusText}"
+                FontSize="14"
+                TextColor="Gray"
+                HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

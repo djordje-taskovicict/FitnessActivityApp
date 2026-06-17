@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FitnessActivityApp.Views.HomePage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:FitnessActivityApp.Controls"
+    Title="Fitness Activity Tracker">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="22">
+
+            <VerticalStackLayout Spacing="6">
+                <Label
+                    Text="Fitness Activity Tracker"
+                    FontSize="28"
+                    FontAttributes="Bold" />
+
+                <Label
+                    Text="Track walking, running and cycling activities."
+                    FontSize="15"
+                    TextColor="Gray" />
+            </VerticalStackLayout>
+
+                     <Button
+                     Text="Settings"
+                     Clicked="OnSettingsClicked"
+                     HeightRequest="46"                       
+                     BackgroundColor="ForestGreen"/>
+            
+
+            <!-- Activity type -->
+            <VerticalStackLayout
+                Spacing="8"
+                IsVisible="{Binding CanShowActivityControls}">
+
+                <Label
+                    Text="Activity type"
+                    FontSize="16"
+                    FontAttributes="Bold" />
+
+                <Picker
+                    ItemsSource="{Binding ActivityTypes}"
+                    SelectedItem="{Binding SelectedActivityType}"
+                    IsEnabled="{Binding CanChangeActivity}" />
+
+            </VerticalStackLayout>
+
+            <!-- Live stats -->
+            <controls:LiveStatsCard />
+
+            <!-- New Activity + Stare aktivnosti -->
+            <Grid
+              ColumnDefinitions="*,*"
+              ColumnSpacing="15">
+
+                            <Button
+                      Grid.Column="0"
+                      Text="New Activity"
+                      Command="{Binding NewActivityCommand}"
+                      HeightRequest="50"                       
+                      BackgroundColor="ForestGreen"/>
+
+                            <Button
+                      Grid.Column="1"
+                      Text="Old activity"
+                      Clicked="OnHistoryClicked"
+                      HeightRequest="50"                       
+                      BackgroundColor="ForestGreen"/>
+
+            </Grid>
+            
+            <!-- Start / Stop Activity -->
+            <Grid
+                ColumnDefinitions="*,*"
+                ColumnSpacing="14">
+
+                <Button
+                    Grid.Column="0"
+                    Text="Start Activity"
+                    Command="{Binding StartCommand}"
+                    IsEnabled="{Binding CanStartActivity}"
+                    HeightRequest="52" 
+                    BackgroundColor="ForestGreen"/>
+
+                <Button
+                    Grid.Column="1"
+                    Text="Stop Activity"
+                    Command="{Binding StopCommand}"
+                    IsEnabled="{Binding CanStopActivity}"
+                    HeightRequest="52" 
+                    BackgroundColor="ForestGreen"/>
+
+            </Grid>
+
+            <Label
+                Text="{Binding StatusText}"
+                FontSize="14"
+                TextColor="Gray"
+                HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

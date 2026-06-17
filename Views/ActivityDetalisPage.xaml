@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="FitnessActivityApp.Views.ActivityDetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:FitnessActivityApp.Controls"
+    Title="Activity details">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24" Spacing="18">
+
+            <Label
+                Text="{Binding TitleText}"
+                FontSize="26"
+                FontAttributes="Bold" />
+
+            <Label
+                Text="Route preview"
+                FontSize="20"
+                FontAttributes="Bold" />
+
+            <controls:RouteMapView
+                Samples="{Binding Samples}"
+                HeightRequest="260" />
+
+            <Border
+                StrokeThickness="5"
+                Stroke="#DDDDDD"
+                Padding="18"
+                StrokeShape="RoundRectangle 18">
+
+                <Label
+                    Text="{Binding MainStatsText}"
+                    FontSize="16" />
+
+            </Border>
+
+            <Border
+                StrokeThickness="1"
+                Stroke="#DDDDDD"
+                Padding="18"
+                StrokeShape="RoundRectangle 20">
+
+                <Label
+                    Text="{Binding SpeedStatsText}"
+                    FontSize="16" />
+
+            </Border>
+
+            <Border
+                StrokeThickness="1"
+                Stroke="#DDDDDD"
+                Padding="18"
+                StrokeShape="RoundRectangle 18">
+
+                <Label
+                    Text="{Binding PatternText}"
+                    FontSize="16" />
+
+            </Border>
+
+            <Label
+                Text="GPS / movement samples"
+                FontSize="20"
+                FontAttributes="Bold" />
+
+            <CollectionView
+                ItemsSource="{Binding Samples}"
+                HeightRequest="350">
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Border
+                            StrokeThickness="1"
+                            Stroke="#EEEEEE"
+                            Padding="12"
+                            Margin="0,0,0,8"
+                            StrokeShape="RoundRectangle 12">
+
+                            <Label
+                                Text="{Binding DisplayText}"
+                                FontSize="14" />
+
+                        </Border>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
